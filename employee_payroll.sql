@@ -57,3 +57,9 @@ ALTER TABLE employee_payroll ADD taxable_pay Double NOT NULL AFTER deductions;
 ALTER TABLE employee_payroll ADD tax Double NOT NULL AFTER taxable_pay;
 ALTER TABLE employee_payroll ADD net_pay Double NOT NULL AFTER tax;
 
+#UC10	 #Ability to make Terisa as part of two department													
+UPDATE employee_payroll SET department = 'Sales' WHERE name = 'Terisa';  
+INSERT INTO employee_payroll
+(name, department, gender, basic_pay, deductions, taxable_pay, tax, net_pay, start) VALUES
+('Terisa', 'Marketing', 'F', 3000000.00, 1000000.00, 2000000.00, 500000.00, 1500000.00, '2018-01-03');
+SELECT * FROM employee_payroll WHERE name = 'Terisa';

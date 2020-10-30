@@ -63,3 +63,75 @@ INSERT INTO employee_payroll
 (name, department, gender, basic_pay, deductions, taxable_pay, tax, net_pay, start) VALUES
 ('Terisa', 'Marketing', 'F', 3000000.00, 1000000.00, 2000000.00, 500000.00, 1500000.00, '2018-01-03');
 SELECT * FROM employee_payroll WHERE name = 'Terisa';
+
+#UC11	#Normalising the above table into smaller tables
+CREATE TABLE company						
+(
+ company_id 	INT PRIMARY KEY, 				
+ company_name 	VARCHAR(30) NOT NULL
+);
+
+
+CREATE TABLE employee 						
+(
+ id 		INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ company_id 	INT REFERENCES company(company_id),
+ phone_number 	VARCHAR(20) NOT NULL,
+ address 	VARCHAR(50) NOT NULL DEFAULT 'TBD',
+ gender 	CHAR(1) NOT NULL
+);
+
+CREATE TABLE payroll
+(
+ emp_id 	INT REFERENCES employee(id),
+ basic_pay 	DOUBLE NOT NULL,
+ deductions 	DOUBLE NOT NULL,
+ taxable_pay 	DOUBLE NOT NULL,
+ tax 		DOUBLE NOT NULL,
+ net_pay 	DOUBLE NOT NULL
+);
+
+CREATE TABLE department
+(
+ dept_id 	INT PRIMARY KEY,
+ dept_name 	VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE employee_department
+(
+ emp_id 	INT REFERENCES employee(id),
+ dept_id 	INT REFERENCES department(dept_id)
+);
+
+INSERT INTO company VALUES 					#Inserting data to company table
+ 	(1,'Capgemini'),
+ 	(2,'Company B'),
+ 	(3,'Company C');
+    
+ALTER TABLE employee 
+ADD COLUMN employee_name VARCHAR(20) NOT NULL AFTER company_id;
+
+INSERT INTO employee VALUES 					#Inserting data to employee table
+ 	(101, 1, 'Bill', '9876543210', 'California', 'M' ),
+	(102, 1, 'Terisa', '8876543211', 'San Francisco', 'F' ),
+	(103, 2, 'Charlie', '7876543212', 'New York', 'M' );
+
+#Inserting data to payroll table corresponding to employee
+INSERT INTO payroll VALUES 					
+ 	(101,50000,5000,45000,5000,40000),
+ 	(102,20000,2000,18000,3000,15000),
+ 	(103,60000,6000,54000,4000,50000);
+    
+#Inserting data to department table 
+INSERT INTO department VALUES  					
+ 	(201, 'Sales'),
+ 	(202, 'Marketing'),
+ 	(203, 'Logistics'),
+ 	(204, 'Management');
+  
+#Inserting data to emp_department table   
+INSERT INTO employee_department VALUES  				
+ 	(101,203),
+ 	(102,201),
+ 	(102,202),
+ 	(103,204);

@@ -116,14 +116,14 @@ INSERT INTO employee VALUES 					#Inserting data to employee table
 	(102, 1, 'Terisa', '8876543211', 'San Francisco', 'F' ),
 	(103, 2, 'Charlie', '7876543212', 'New York', 'M' );
 
-#Inserting data to payroll table corresponding to employee
-INSERT INTO payroll VALUES 					
+
+INSERT INTO payroll VALUES 			#Inserting data to payroll table corresponding to employee_id
  	(101,50000,5000,45000,5000,40000),
  	(102,20000,2000,18000,3000,15000),
  	(103,60000,6000,54000,4000,50000);
     
-#Inserting data to department table 
-INSERT INTO department VALUES  					
+INSERT INTO department VALUES  		#Inserting data to department table 
+
  	(201, 'Sales'),
  	(202, 'Marketing'),
  	(203, 'Logistics'),

@@ -103,7 +103,9 @@ CREATE TABLE employee_department
  dept_id 	INT REFERENCES department(dept_id)
 );
 
-INSERT INTO company VALUES 					#Inserting data to company table
+
+#Inserting data to company table
+INSERT INTO company VALUES 					
  	(1,'Capgemini'),
  	(2,'Company B'),
  	(3,'Company C');
@@ -111,7 +113,8 @@ INSERT INTO company VALUES 					#Inserting data to company table
 ALTER TABLE employee 
 ADD COLUMN employee_name VARCHAR(20) NOT NULL AFTER company_id;
 
-INSERT INTO employee VALUES 					#Inserting data to employee table
+#Inserting data to employee table
+INSERT INTO employee VALUES 					
  	(101, 1, 'Bill', '9876543210', 'California', 'M' ),
 	(102, 1, 'Terisa', '8876543211', 'San Francisco', 'F' ),
 	(103, 2, 'Charlie', '7876543212', 'New York', 'M' );
@@ -135,3 +138,11 @@ INSERT INTO employee_department VALUES
  	(102,201),
  	(102,202),
  	(103,204);
+    
+#UC12
+#Retrieving data from tables
+  select * from employee;
+  select * from employee_department; 
+  select * from department; 
+  select * from payroll;
+  select * from company;
